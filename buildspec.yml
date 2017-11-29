@@ -1,0 +1,41 @@
+version: 0.2
+
+# Specifications for AWS CodeBuild http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+
+#env:
+#  variables:
+#    key: "value"
+#    key: "value"
+#  parameter-store:
+#    key: "value"
+#    key: "value"
+
+phases:
+  install:
+    commands:
+      - echo Beginning install phase
+      - pip install virtualenv
+  pre_build:
+    commands:
+      - echo Beginning pre-build phase
+      - echo Create virtual environment
+      - virtualenv ./env
+      - echo Activate virtual environment
+      - . ./env/bin/activate
+      - echo install dependencies
+      - pip install -r requirements.txt
+      - echo seeing where packages were installed
+      - echo `pip show boto3`
+
+  build:
+    commands:
+      - echo Beginning build phase
+      - echo Generating lambda-deployable zip
+      - python build_lambda_deployment.py
+#post_build:
+#    commands:
+#      - echo Beginning post_build phase
+#      - command
+artifacts:
+  files:
+    - gits3vault.zip
