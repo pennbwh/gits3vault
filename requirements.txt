@@ -7,7 +7,7 @@ futures==3.1.1
 idna==2.5
 jmespath==0.9.3
 pluggy==0.4.0
-py==1.4.34
+py==1.10.0
 python-dateutil==2.6.1
 python-gitlab==0.21.2
 requests==2.18.3
